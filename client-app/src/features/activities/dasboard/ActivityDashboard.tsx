@@ -4,13 +4,11 @@ import { Grid } from 'semantic-ui-react'
 import LoadingComponent from '../../../app/layout/LoadingComponent';
 import { useStore } from '../../../app/stores/store';
 import ActivityList from "../dasboard/ActivityList"
-import ActivityDetails from "../details/ActivityDetails"
-import ActivityForm from "../form/ActivityForm"
+import ActivityFilters from "../dasboard/ActivityFilters"; 
 
 export default observer( function ActivityDashboard(){
 
     const {activityStore} = useStore();
-    const {selectedActivity, editMode} = activityStore;
     const {loadActivities, activityRegistry} = activityStore;
 
     //Getting activities from the API
@@ -23,19 +21,11 @@ export default observer( function ActivityDashboard(){
     return (
         <Grid>
             <Grid.Column width='10'>
-                <ActivityList
-                />
-                
+                <ActivityList/>
             </Grid.Column>
             <Grid.Column width='6'>
-                {selectedActivity && !editMode &&
-                <ActivityDetails 
-                />}
-                {editMode &&
-                <ActivityForm /> }
-                
+                <ActivityFilters/>
             </Grid.Column>
-            
         </Grid>
     )
 })
